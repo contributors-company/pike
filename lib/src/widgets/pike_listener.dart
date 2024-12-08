@@ -3,17 +3,20 @@ import 'package:pike/pike.dart';
 
 typedef PikeWidgetListener<S> = void Function(BuildContext context, S state);
 
+typedef PikeWidgetListenerWhen<S> = bool Function(S newState, S oldState);
+
 class PikeListener<P extends Pike, S> extends StatefulWidget {
   const PikeListener({
     super.key,
     required this.child,
     this.pike,
-    required this.listener,
+    required this.listener, this.listenerWhen,
   });
 
   final P? pike;
   final Widget child;
   final PikeWidgetListener<S> listener;
+  final PikeWidgetListenerWhen<S>? listenerWhen;
 
   @override
   State<PikeListener<P, S>> createState() => _PikeListenerState<P, S>();
@@ -21,11 +24,13 @@ class PikeListener<P extends Pike, S> extends StatefulWidget {
 
 class _PikeListenerState<P extends Pike, S> extends State<PikeListener<P, S>> {
   late P pike;
+  late S _previousState;
 
   @override
   void initState() {
     super.initState();
     pike = widget.pike ?? PikeProvider.of<P>(context);
+    _previousState = pike.state;
     pike.addListener(_listener);
   }
 
@@ -38,11 +43,18 @@ class _PikeListenerState<P extends Pike, S> extends State<PikeListener<P, S>> {
     if (oldBloc != currentBloc) {
       oldBloc.removeListener(_listener);
       pike = currentBloc;
+      _previousState = pike.state;
       pike.addListener(_listener);
     }
   }
 
-  void _listener() => widget.listener(context, pike.state);
+  void _listener() {
+    if(widget.listenerWhen?.call(_previousState, pike.state) ?? true) {
+      if (!mounted) return;
+      widget.listener(context, pike.state);
+      _previousState = pike.state;
+    }
+  }
 
   @override
   void dispose() {

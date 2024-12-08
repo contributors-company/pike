@@ -13,13 +13,13 @@ typedef EventHandler<Event, State> = FutureOr<void> Function(
 
 typedef Emit<S> = void Function(S state);
 
-class Pike<Event, State> implements ChangeNotifier {
+class Pike<Event, State> {
   Pike(State initialValue)
       : _stateNotifier = _PikeStateNotifier(initialValue),
         _eventNotifier = _PikeEventNotifier(),
         _listeners = [] {
     _observer?.onCreate(this);
-    _stateNotifier.addListener(notifyListeners);
+    _stateNotifier.addListener(_notifyListeners);
   }
 
   final List<VoidCallback> _listeners;
@@ -61,9 +61,6 @@ class Pike<Event, State> implements ChangeNotifier {
         _stateNotifier.value = state;
       };
 
-
-
-  @override
   void dispose() {
     _observer?.onDispose(this);
     _listeners.clear();
@@ -71,22 +68,18 @@ class Pike<Event, State> implements ChangeNotifier {
     _stateNotifier.dispose();
   }
 
-  @override
   void addListener(VoidCallback listener) {
     _listeners.add(listener);
   }
 
-  @override
   bool get hasListeners => _listeners.isNotEmpty;
 
-  @override
-  void notifyListeners() {
+  void _notifyListeners() {
     for (var listener in _listeners) {
       listener();
     }
   }
 
-  @override
   void removeListener(VoidCallback listener) {
     _listeners.remove(listener);
   }
