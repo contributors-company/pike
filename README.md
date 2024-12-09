@@ -162,3 +162,4 @@ PikeProvider<MyPike>(
 
 ## Codecov
 
+![Codecov](https://codecov.io/gh/contributors-company/pike/graphs/sunburst.svg?token=D9Vmv58wit)
