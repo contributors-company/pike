@@ -39,7 +39,8 @@ analyzer:
 linter:
   rules:
     # Public packages
-    public_member_api_docs: true
+    ## TODO
+    public_member_api_docs: false
     lines_longer_than_120_chars: true
 
     # Enabling rules

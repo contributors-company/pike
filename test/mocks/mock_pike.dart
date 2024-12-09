@@ -12,12 +12,10 @@ final class MockPike extends Pike<Event, State> {
   }
 
   Future<void> _callback(FetchEvent event, Emit<State> emit) async {
-    print(event);
     emit(LoadedState());
   }
 
   void _callbackA(FetchWithExceptionEvent event, Emit<State> emit) {
-    print(event);
     emit(ExceptionState());
   }
 }
