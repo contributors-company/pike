@@ -5,12 +5,11 @@ typedef PikeWidgetListener<S> = void Function(BuildContext context, S state);
 
 typedef PikeWidgetListenerWhen<S> = bool Function(S newState, S oldState);
 
-class PikeListener<P extends Pike, S> extends StatefulWidget {
+class PikeListener<P extends Pike<Object?, S>, S> extends StatefulWidget {
   const PikeListener({
-    super.key,
-    required this.child,
+    required this.child, required this.listener, super.key,
     this.pike,
-    required this.listener, this.listenerWhen,
+    this.listenerWhen,
   });
 
   final P? pike;
@@ -22,7 +21,8 @@ class PikeListener<P extends Pike, S> extends StatefulWidget {
   State<PikeListener<P, S>> createState() => _PikeListenerState<P, S>();
 }
 
-class _PikeListenerState<P extends Pike, S> extends State<PikeListener<P, S>> {
+class _PikeListenerState<P extends Pike<Object?, S>, S>
+    extends State<PikeListener<P, S>> {
   late P pike;
   late S _previousState;
 
@@ -49,7 +49,7 @@ class _PikeListenerState<P extends Pike, S> extends State<PikeListener<P, S>> {
   }
 
   void _listener() {
-    if(widget.listenerWhen?.call(_previousState, pike.state) ?? true) {
+    if (widget.listenerWhen?.call(_previousState, pike.state) ?? true) {
       if (!mounted) return;
       widget.listener(context, pike.state);
       _previousState = pike.state;
@@ -62,10 +62,6 @@ class _PikeListenerState<P extends Pike, S> extends State<PikeListener<P, S>> {
     super.dispose();
   }
 
-
-
   @override
-  Widget build(BuildContext context) {
-    return widget.child;
-  }
+  Widget build(BuildContext context) => widget.child;
 }

@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pike/pike.dart';
-import 'package:pike/src/widgets/pike_listener.dart';
 
 typedef PikeBuilderWidget<S> = Widget Function(BuildContext, S);
 
 typedef PikeBuilderWidgetWhen<S> = bool Function(S newState, S oldState);
 
-class PikeBuilder<P extends Pike, S> extends StatefulWidget {
+class PikeBuilder<P extends Pike<Object?, S>, S> extends StatefulWidget {
   const PikeBuilder({
-    super.key,
+    required this.builder, super.key,
     this.pike,
-    required this.builder,
     this.builderWhen,
   });
 
@@ -22,7 +20,8 @@ class PikeBuilder<P extends Pike, S> extends StatefulWidget {
   State<PikeBuilder<P, S>> createState() => _PikeBuilderState<P, S>();
 }
 
-class _PikeBuilderState<P extends Pike, S> extends State<PikeBuilder<P, S>> {
+class _PikeBuilderState<P extends Pike<Object?, S>, S>
+    extends State<PikeBuilder<P, S>> {
   late P pike;
 
   @override
@@ -45,12 +44,10 @@ class _PikeBuilderState<P extends Pike, S> extends State<PikeBuilder<P, S>> {
   void _listener(BuildContext context, S state) => setState(() {});
 
   @override
-  Widget build(BuildContext context) {
-    return PikeListener<P, S>(
-      pike: pike,
-      listenerWhen: widget.builderWhen,
-      listener: _listener,
-      child: widget.builder(context, pike.state),
-    );
-  }
+  Widget build(BuildContext context) => PikeListener<P, S>(
+        pike: pike,
+        listenerWhen: widget.builderWhen,
+        listener: _listener,
+        child: widget.builder(context, pike.state),
+      );
 }

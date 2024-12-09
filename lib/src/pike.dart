@@ -2,10 +2,6 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:pike/pike.dart';
 
-part 'pike_state_notifier.dart';
-
-part 'pike_event_notifier.dart';
-
 typedef EventHandler<Event, State> = FutureOr<void> Function(
   Event event,
   Emit<State> emit,
@@ -15,8 +11,8 @@ typedef Emit<S> = void Function(S state);
 
 class Pike<Event, State> {
   Pike(State initialValue)
-      : _stateNotifier = _PikeStateNotifier(initialValue),
-        _eventNotifier = _PikeEventNotifier(),
+      : _stateNotifier = ValueNotifier(initialValue),
+        _eventNotifier = ValueNotifier(null),
         _listeners = [] {
     _observer?.onCreate(this);
     _stateNotifier.addListener(_notifyListeners);
@@ -24,8 +20,8 @@ class Pike<Event, State> {
 
   final List<VoidCallback> _listeners;
 
-  final _PikeStateNotifier<State> _stateNotifier;
-  final _PikeEventNotifier<Event> _eventNotifier;
+  final ValueNotifier<State> _stateNotifier;
+  final ValueNotifier<Event?> _eventNotifier;
 
   static PikeObserver? _observer;
 
@@ -33,11 +29,10 @@ class Pike<Event, State> {
 
   Event get event => _eventNotifier.value!;
 
-  void on<E extends Event>(EventHandler<E, State> callback) {
-    _eventNotifier.addListener(
-      _listener(callback),
-    );
-  }
+  void on<E extends Event>(EventHandler<E, State> callback) =>
+      _eventNotifier.addListener(
+        _listener(callback),
+      );
 
   VoidCallback _listener<E extends Event>(EventHandler<E, State> callback) =>
       () {
@@ -49,7 +44,7 @@ class Pike<Event, State> {
     _eventNotifier.value = event;
   }
 
-  Emit<State> _emit(Event event) => (State state) {
+  Emit<State> _emit(Event event) => (state) {
         _observer?.onEmit(
           this,
           Change(
@@ -75,12 +70,8 @@ class Pike<Event, State> {
   bool get hasListeners => _listeners.isNotEmpty;
 
   void _notifyListeners() {
-    for (var listener in _listeners) {
-      listener();
-    }
+    for (final listener in _listeners) listener();
   }
 
-  void removeListener(VoidCallback listener) {
-    _listeners.remove(listener);
-  }
+  void removeListener(VoidCallback listener) => _listeners.remove(listener);
 }
