@@ -3,7 +3,6 @@ package:include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     # Tests
-    - "test/**.mocks.dart"
     - ".test_coverage.dart"
     # Assets
     - "assets/**"

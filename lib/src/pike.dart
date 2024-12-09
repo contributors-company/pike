@@ -19,11 +19,11 @@ class Pike<Event, State> {
   }
 
   final List<VoidCallback> _listeners;
-
   final ValueNotifier<State> _stateNotifier;
   final ValueNotifier<Event?> _eventNotifier;
-
   static PikeObserver? _observer;
+
+  static set observer(PikeObserver observer) => _observer = observer;
 
   State get state => _stateNotifier.value;
 
@@ -66,8 +66,6 @@ class Pike<Event, State> {
   void addListener(VoidCallback listener) {
     _listeners.add(listener);
   }
-
-  bool get hasListeners => _listeners.isNotEmpty;
 
   void _notifyListeners() {
     for (final listener in _listeners) listener();

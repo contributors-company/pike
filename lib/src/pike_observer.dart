@@ -1,12 +1,17 @@
 import 'package:pike/pike.dart';
 
-interface class PikeObserver {
+class PikeObserver {
   void onCreate<P extends Pike<Object?, Object?>>(P pike) {}
 
-  void onEvent<P extends Pike<Object?, Object?>, Event>(P pike, Event event) {}
+  void onEvent<P extends Pike<Object?, Object?>, Event>(
+    P pike,
+    Event event,
+  ) {}
 
   void onDispose<P extends Pike<Object?, Object?>>(P pike) {}
 
   void onEmit<Event, State, P extends Pike<Object?, Object?>>(
-      P pike, Change<Event, State> change) {}
+    P pike,
+    Change<Event, State> change,
+  ) {}
 }
