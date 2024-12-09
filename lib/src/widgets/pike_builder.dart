@@ -7,7 +7,8 @@ typedef PikeBuilderWidgetWhen<S> = bool Function(S newState, S oldState);
 
 class PikeBuilder<P extends Pike<Object?, S>, S> extends StatefulWidget {
   const PikeBuilder({
-    required this.builder, super.key,
+    required this.builder,
+    super.key,
     this.pike,
     this.builderWhen,
   });

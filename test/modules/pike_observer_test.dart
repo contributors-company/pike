@@ -6,7 +6,7 @@ import '../mocks/mock_pike_observer.dart';
 
 void main() {
   group('PikeObserver', () {
-    final pike =  MockPike();
+    final pike = MockPike();
     final observer = MockPikeObserver();
     Pike.observer = observer;
 
@@ -19,13 +19,12 @@ void main() {
     });
 
     test('Pike Emit', () {
-      observer.onEmit(pike, Change(FetchEvent(), InitialState(), LoadedState()));
+      observer.onEmit(
+          pike, Change(FetchEvent(), InitialState(), LoadedState()));
     });
 
     test('Pike Dispose', () {
       observer.onDispose(pike);
     });
-
   });
-
 }

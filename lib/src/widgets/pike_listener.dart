@@ -7,7 +7,9 @@ typedef PikeWidgetListenerWhen<S> = bool Function(S newState, S oldState);
 
 class PikeListener<P extends Pike<Object?, S>, S> extends StatefulWidget {
   const PikeListener({
-    required this.child, required this.listener, super.key,
+    required this.child,
+    required this.listener,
+    super.key,
     this.pike,
     this.listenerWhen,
   });

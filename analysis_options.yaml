@@ -195,7 +195,7 @@ linter:
     avoid_classes_with_only_static_members: true
     prefer_mixin: true
     use_setters_to_change_properties: true
-    avoid_setters_without_getters: true
+    avoid_setters_without_getters: false
     avoid_returning_this: true
     type_annotate_public_apis: true
     avoid_types_on_closure_parameters: true

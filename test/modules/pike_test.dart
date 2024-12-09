@@ -1,8 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import '../mocks/mock_pike.dart';
 
-
-
 void main() {
   test('adds one to input values', () {
     final pike = MockPike();
@@ -29,7 +27,8 @@ void main() {
       expect(pike.state, isA<State>());
     }
 
-    pike..addListener(listen)
+    pike
+      ..addListener(listen)
       ..add(FetchEvent())
       ..add(FetchWithExceptionEvent())
       ..removeListener(listen);

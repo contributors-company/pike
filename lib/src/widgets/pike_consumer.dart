@@ -3,7 +3,9 @@ import 'package:pike/pike.dart';
 
 class PikeConsumer<P extends Pike<Object?, S>, S> extends StatefulWidget {
   const PikeConsumer({
-    required this.builder, required this.listener, super.key,
+    required this.builder,
+    required this.listener,
+    super.key,
     this.pike,
     this.builderWhen,
     this.listenerWhen,

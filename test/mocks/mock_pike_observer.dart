@@ -14,14 +14,13 @@ class MockPikeObserver extends PikeObserver {
   void onDispose<P extends Pike<Object?, Object?>>(P pike) {
     expect(pike, isA<MockPike>());
     super.onDispose(pike);
-
   }
 
   @override
-  void onEmit<Event, State, P extends Pike<Object?, Object?>>(P pike, Change<Event, State> change) {
+  void onEmit<Event, State, P extends Pike<Object?, Object?>>(
+      P pike, Change<Event, State> change) {
     expect(pike, isA<MockPike>());
     super.onEmit(pike, change);
-
   }
 
   @override
@@ -29,5 +28,4 @@ class MockPikeObserver extends PikeObserver {
     expect(pike, isA<MockPike>());
     super.onEvent(pike, event);
   }
-
 }

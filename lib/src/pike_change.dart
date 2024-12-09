@@ -1,5 +1,4 @@
 class Change<Event, State> {
-
   Change(
     this.event,
     this.currentState,
