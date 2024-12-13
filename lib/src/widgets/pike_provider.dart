@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:pike/pike.dart';
 
-class PikeProvider<T extends Pike<Object?, Object?>> extends InheritedWidget {
+class PikeProvider<T extends PikeBase<Object?>> extends InheritedWidget {
   const PikeProvider({
     required super.child,
     required this.pike,
@@ -10,7 +10,7 @@ class PikeProvider<T extends Pike<Object?, Object?>> extends InheritedWidget {
 
   final T pike;
 
-  static T? maybeOf<T extends Pike<Object?, Object?>>(
+  static T? maybeOf<T extends PikeBase<Object?>>(
     BuildContext context, {
     bool listen = false,
   }) =>
@@ -18,7 +18,7 @@ class PikeProvider<T extends Pike<Object?, Object?>> extends InheritedWidget {
           ? context.dependOnInheritedWidgetOfExactType<PikeProvider<T>>()?.pike
           : context.getInheritedWidgetOfExactType<PikeProvider<T>>()?.pike;
 
-  static T of<T extends Pike<Object?, Object?>>(
+  static T of<T extends PikeBase<Object?>>(
     BuildContext context, {
     bool listen = false,
   }) =>

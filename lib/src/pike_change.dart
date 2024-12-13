@@ -4,7 +4,7 @@ class Change<Event, State> {
     this.currentState,
     this.nextState,
   );
-  final Event event;
+  final Event? event;
   final State currentState;
   final State nextState;
 }

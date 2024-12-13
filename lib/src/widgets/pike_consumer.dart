@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pike/pike.dart';
 
-class PikeConsumer<P extends Pike<Object?, S>, S> extends StatefulWidget {
+class PikeConsumer<P extends PikeBase<S>, S> extends StatefulWidget {
   const PikeConsumer({
     required this.builder,
     required this.listener,
@@ -21,8 +21,9 @@ class PikeConsumer<P extends Pike<Object?, S>, S> extends StatefulWidget {
   State<PikeConsumer<P, S>> createState() => _PikeConsumerState<P, S>();
 }
 
-class _PikeConsumerState<P extends Pike<Object?, S>, S>
+class _PikeConsumerState<P extends PikeBase<S>, S>
     extends State<PikeConsumer<P, S>> {
+
   late P pike;
 
   @override

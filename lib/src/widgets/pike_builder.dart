@@ -5,7 +5,7 @@ typedef PikeBuilderWidget<S> = Widget Function(BuildContext, S);
 
 typedef PikeBuilderWidgetWhen<S> = bool Function(S newState, S oldState);
 
-class PikeBuilder<P extends Pike<Object?, S>, S> extends StatefulWidget {
+class PikeBuilder<P extends PikeBase<S>, S> extends StatefulWidget {
   const PikeBuilder({
     required this.builder,
     super.key,
@@ -21,7 +21,7 @@ class PikeBuilder<P extends Pike<Object?, S>, S> extends StatefulWidget {
   State<PikeBuilder<P, S>> createState() => _PikeBuilderState<P, S>();
 }
 
-class _PikeBuilderState<P extends Pike<Object?, S>, S>
+class _PikeBuilderState<P extends PikeBase<S>, S>
     extends State<PikeBuilder<P, S>> {
   late P pike;
 

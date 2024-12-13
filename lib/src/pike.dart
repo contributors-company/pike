@@ -9,23 +9,12 @@ typedef EventHandler<Event, State> = FutureOr<void> Function(
 
 typedef Emit<S> = void Function(S state);
 
-class Pike<Event, State> {
+abstract class Pike<Event, State> extends PikeBase<State> {
   Pike(State initialValue)
-      : _stateNotifier = ValueNotifier(initialValue),
-        _eventNotifier = ValueNotifier(null),
-        _listeners = [] {
-    _observer?.onCreate(this);
-    _stateNotifier.addListener(_notifyListeners);
-  }
+      : _eventNotifier = ValueNotifier(null),
+        super(stateNotifier: ValueNotifier(initialValue));
 
-  final List<VoidCallback> _listeners;
-  final ValueNotifier<State> _stateNotifier;
   final ValueNotifier<Event?> _eventNotifier;
-  static PikeObserver? _observer;
-
-  static set observer(PikeObserver observer) => _observer = observer;
-
-  State get state => _stateNotifier.value;
 
   Event get event => _eventNotifier.value!;
 
@@ -40,36 +29,24 @@ class Pike<Event, State> {
       };
 
   void add(Event event) {
-    _observer?.onEvent(this, event);
+    onEvent(this, event);
     _eventNotifier.value = event;
   }
 
   Emit<State> _emit(Event event) => (state) {
-        _observer?.onEmit(
+        onEmit(
           this,
           Change(
             event,
-            _stateNotifier.value,
+            super.state,
             state,
           ),
         );
-        _stateNotifier.value = state;
       };
 
+  @override
   void dispose() {
-    _observer?.onDispose(this);
-    _listeners.clear();
     _eventNotifier.dispose();
-    _stateNotifier.dispose();
+    super.dispose();
   }
-
-  void addListener(VoidCallback listener) {
-    _listeners.add(listener);
-  }
-
-  void _notifyListeners() {
-    for (final listener in _listeners) listener();
-  }
-
-  void removeListener(VoidCallback listener) => _listeners.remove(listener);
 }

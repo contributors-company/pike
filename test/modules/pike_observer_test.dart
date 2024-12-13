@@ -8,7 +8,7 @@ void main() {
   group('PikeObserver', () {
     final pike = MockPike();
     final observer = MockPikeObserver();
-    Pike.observer = observer;
+    PikeBase.observer = observer;
 
     test('Pike Create', () {
       observer.onCreate(pike);
@@ -18,13 +18,18 @@ void main() {
       observer.onEvent(pike, FetchEvent());
     });
 
-    test('Pike Emit', () {
-      observer.onEmit(
-          pike, Change(FetchEvent(), InitialState(), LoadedState()));
-    });
+    test(
+      'Pike Emit',
+      () {
+        observer.onEmit(
+            pike, Change(FetchEvent(), InitialState(), LoadedState()));
+      },
+    );
 
     test('Pike Dispose', () {
       observer.onDispose(pike);
     });
+
+    PikeBase.observer = null;
   });
 }

@@ -5,7 +5,7 @@ typedef PikeWidgetListener<S> = void Function(BuildContext context, S state);
 
 typedef PikeWidgetListenerWhen<S> = bool Function(S newState, S oldState);
 
-class PikeListener<P extends Pike<Object?, S>, S> extends StatefulWidget {
+class PikeListener<P extends PikeBase<S>, S> extends StatefulWidget {
   const PikeListener({
     required this.child,
     required this.listener,
@@ -23,7 +23,7 @@ class PikeListener<P extends Pike<Object?, S>, S> extends StatefulWidget {
   State<PikeListener<P, S>> createState() => _PikeListenerState<P, S>();
 }
 
-class _PikeListenerState<P extends Pike<Object?, S>, S>
+class _PikeListenerState<P extends PikeBase<S>, S>
     extends State<PikeListener<P, S>> {
   late P pike;
   late S _previousState;

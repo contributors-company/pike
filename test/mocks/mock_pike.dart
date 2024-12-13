@@ -2,10 +2,12 @@ import 'package:pike/pike.dart';
 
 final class MockPike extends Pike<Event, State> {
   MockPike() : super(InitialState()) {
-    on<Event>((event, emit) => switch (event) {
-          FetchEvent() => _callback(event, emit),
-          FetchWithExceptionEvent() => _callbackA(event, emit),
-        });
+    on<Event>(
+      (event, emit) => switch (event) {
+        FetchEvent() => _callback(event, emit),
+        FetchWithExceptionEvent() => _callbackA(event, emit),
+      },
+    );
   }
 
   Future<void> _callback(FetchEvent event, Emit<State> emit) async {

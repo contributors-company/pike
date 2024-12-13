@@ -1,6 +1,8 @@
 library pike;
 
+export 'src/carp.dart';
 export 'src/pike.dart';
+export 'src/pike_base.dart';
 export 'src/pike_change.dart';
 export 'src/pike_observer.dart';
 export 'src/widgets/pike_builder.dart';
