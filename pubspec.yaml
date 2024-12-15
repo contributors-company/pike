@@ -1,6 +1,6 @@
 name: pike
 description: "Pike is an event-driven state management library, enabling efficient state updates and handling through events."
-version: 1.0.0-dev
+version: 1.0.0
 homepage: https://www.contributors.info/repository/pike
 
 repository: https://github.com/contributors-company/pike
