@@ -44,3 +44,4 @@ jobs:
       - name: Analyze project source
         run: flutter analyze --fatal-infos --fatal-warnings lib/ test/
 
+
