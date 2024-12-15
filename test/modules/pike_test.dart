@@ -25,7 +25,7 @@ void main() {
       final pike = MockPike();
 
       void listen() {
-        expect(pike.state, isA<State>());
+        expect(pike.state, isA<MockState>());
       }
 
       pike

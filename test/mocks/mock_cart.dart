@@ -1,6 +1,6 @@
 import 'package:pike/pike.dart';
 
-class MockCarp extends Carp<State> {
+class MockCarp extends Carp<MockState> {
   MockCarp() : super(InitialState());
 
   void fetch() {
@@ -12,10 +12,10 @@ class MockCarp extends Carp<State> {
   }
 }
 
-sealed class State {}
+sealed class MockState {}
 
-class InitialState extends State {}
+class InitialState extends MockState {}
 
-class LoadedState extends State {}
+class LoadedState extends MockState {}
 
-class ExceptionState extends State {}
+class ExceptionState extends MockState {}

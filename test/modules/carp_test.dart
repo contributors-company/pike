@@ -26,7 +26,7 @@ void main() {
       final carp = MockCarp();
 
       void listen() {
-        expect(carp.state, isA<State>());
+        expect(carp.state, isA<MockState>());
       }
 
       carp
