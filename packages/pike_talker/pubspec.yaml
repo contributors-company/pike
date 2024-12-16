@@ -1,0 +1,29 @@
+name: pike_talker
+description: "Pike is an event-driven state management library, enabling efficient state updates and handling through events."
+version: 1.0.0
+resolution: workspace
+
+homepage: https://www.contributors.info/repository/pike
+repository: https://github.com/contributors-company/pike
+issue_tracker: https://github.com/contributors-company/pike/issues
+
+topics:
+  - pike
+  - state-management
+  - state
+  - event-driven
+
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+
+environment:
+  sdk: '>=3.6.0'
+dependencies:
+  talker: ^4.5.2

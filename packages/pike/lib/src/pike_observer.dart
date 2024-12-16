@@ -1,5 +1,6 @@
 import 'package:pike/pike.dart';
 
+
 /// Base class for observing the lifecycle and behavior of `PikeBase` instances.
 ///
 /// The `PikeObserver` provides hooks for monitoring events, state changes,
