@@ -19,8 +19,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PikeProvider<ThemeCarp>(
-      pike: ThemeCarp(),
+    return MultiPikeProvider(
+      providers: [
+        PikeProvider<ThemeCarp>(
+          pike: ThemeCarp(),
+        ),
+        PikeProvider<CounterPike>(
+          pike: CounterPike(),
+        ),
+      ],
       child: const AppView(),
     );
   }
@@ -59,10 +66,7 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PikeProvider<CounterPike>(
-      pike: CounterPike(),
-      child: const CounterView(),
-    );
+    return const CounterView();
   }
 }
 
@@ -95,14 +99,16 @@ class CounterView extends StatelessWidget {
           FloatingActionButton(
             child: const Icon(Icons.add),
             onPressed: () {
-              PikeProvider.of<CounterPike>(context).add(CounterIncrementPressed());
+              PikeProvider.of<CounterPike>(context)
+                  .add(CounterIncrementPressed());
             },
           ),
           const SizedBox(height: 4),
           FloatingActionButton(
             child: const Icon(Icons.remove),
             onPressed: () {
-              PikeProvider.of<CounterPike>(context).add(CounterDecrementPressed());
+              PikeProvider.of<CounterPike>(context)
+                  .add(CounterDecrementPressed());
             },
           ),
           const SizedBox(height: 4),

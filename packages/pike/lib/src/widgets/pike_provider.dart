@@ -23,10 +23,10 @@ class PikeProvider<T extends PikeBase<Object?>> extends InheritedWidget {
   /// );
   /// ```
   const PikeProvider({
-    required super.child,
+    Widget? child,
     required this.pike,
     super.key,
-  });
+  }) : super(child: child ?? const Offstage());
 
   /// pike is [T] instance Pike
   final T pike;
@@ -78,6 +78,9 @@ class PikeProvider<T extends PikeBase<Object?>> extends InheritedWidget {
   @override
   bool updateShouldNotify(covariant PikeProvider oldWidget) =>
       pike != oldWidget.pike;
+
+  Widget buildWithChild(Widget? child) =>
+      PikeProvider<T>(pike: pike, child: child);
 
   /// Override the default [createElement] method
   /// to return a custom element for this widget.
