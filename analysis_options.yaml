@@ -6,6 +6,10 @@ analyzer:
     - ".test_coverage.dart"
     # Assets
     - "assets/**"
+    # Examples
+    - "example/**"
+    # test
+    - "test/**"
 
   # Enable the following options to enable strong mode.
   language:

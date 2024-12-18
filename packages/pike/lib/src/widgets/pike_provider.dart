@@ -23,8 +23,8 @@ class PikeProvider<T extends PikeBase<Object?>> extends InheritedWidget {
   /// );
   /// ```
   const PikeProvider({
-    Widget? child,
     required this.pike,
+    Widget? child,
     super.key,
   }) : super(child: child ?? const Offstage());
 
@@ -79,6 +79,22 @@ class PikeProvider<T extends PikeBase<Object?>> extends InheritedWidget {
   bool updateShouldNotify(covariant PikeProvider oldWidget) =>
       pike != oldWidget.pike;
 
+  /// Creates a new instance of [PikeProvider] using the current [pike]
+  /// and the provided [child] widget.
+  ///
+  /// This method is helpful for scenarios where you need to dynamically
+  /// replace the child of a [PikeProvider]
+  /// without affecting the [pike] instance.
+  ///
+  /// [child] - The new child widget to wrap with the [PikeProvider].
+  ///
+  /// Returns a new [PikeProvider] widget with the same [pike]
+  /// but a different child.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final newProvider = existingProvider.buildWithChild(MyNewWidget());
+  /// ```
   Widget buildWithChild(Widget? child) =>
       PikeProvider<T>(pike: pike, child: child);
 
@@ -97,7 +113,7 @@ class _PikeElement<T extends PikeBase<Object?>> extends InheritedElement {
 
   /// Get the widget associated with this element, cast to [PikeProvider<T>].
   @override
-  PikeProvider get widget => super.widget as PikeProvider<T>;
+  PikeProvider<T> get widget => super.widget as PikeProvider<T>;
 
   /// Override the [unmount] method to dispose
   /// of the [Pike] instance when it is unmounted.
