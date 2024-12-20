@@ -1,6 +1,5 @@
 # Common Dart and Flutter files to ignore
 .dart_tool/
-packages/
 .idea/
 .vscode/
 build/
@@ -39,6 +38,8 @@ reports/
 *.tmp
 *.bak
 *.orig
+
+# Ignore ignore files
 
 # Ignore other unnecessary files
 **/debug/
