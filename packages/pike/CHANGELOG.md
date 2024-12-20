@@ -1,3 +1,7 @@
+## 1.0.1-dev
+
+* MultiPikeProvider
+
 ## 1.0.0
 
 * Stable version
