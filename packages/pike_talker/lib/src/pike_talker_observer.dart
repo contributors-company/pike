@@ -29,7 +29,7 @@ class TalkerBlocObserver extends PikeObserver {
     if (!accepted) {
       return;
     }
-    _talker.log(
+    _talker.logCustom(
       PikeEventLog(
         pike: pike,
         event: event,
