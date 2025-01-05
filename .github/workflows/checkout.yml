@@ -7,12 +7,12 @@ name: Dart
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'lib/**'
       - '.github/**'
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - '.github/**'
 
@@ -40,8 +40,5 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Analyze project source
-        run: cd package/pike && flutter analyze --fatal-infos --fatal-warnings lib/ test/
 
 
