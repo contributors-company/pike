@@ -1,5 +1,5 @@
-![Logo](../../screenshots/pike-frame.png)
-![Frame](../../screenshots/contributors.png)
+![Logo](screenshots/pike-frame.png)
+![Frame](https://raw.githubusercontent.com/contributors-company/pike/master/screenshots/contributors.png)
 
 ![Pub Version](https://img.shields.io/pub/v/pike)
 ![License](https://img.shields.io/github/license/contributors-company/pike)
