@@ -1,6 +1,6 @@
 name: pike
 description: "Pike is an event-driven state management library, enabling efficient state updates and handling through events."
-version: 1.0.1
+version: 1.0.3-dev
 resolution: workspace
 
 homepage: https://www.contributors.info/docs/Pike/getting-started

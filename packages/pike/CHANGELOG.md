@@ -1,3 +1,11 @@
+## 1.0.3-dev
+
+* Test with Monorepo
+
+## 1.0.2-dev
+
+* Test with Monorepo
+
 ## 1.0.1
 
 * MultiPikeProvider
