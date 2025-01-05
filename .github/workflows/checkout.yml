@@ -28,7 +28,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.16.0
+          flutter-version: 3.5.0
 
       - name: Install dependencies
         run: flutter pub get
@@ -42,5 +42,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Analyze project source
-        run: flutter analyze --fatal-infos --fatal-warnings lib/ test/
+        run: cd package/pike && flutter analyze --fatal-infos --fatal-warnings lib/ test/
+
 

@@ -1,6 +1,6 @@
-name: pike
+name: pike_monorepo
 description: "Pike is an event-driven state management library, enabling efficient state updates and handling through events."
-version: 1.0.0-dev
+version: 1.0.0
 homepage: https://www.contributors.info/repository/pike
 
 repository: https://github.com/contributors-company/pike
@@ -13,6 +13,10 @@ topics:
   - state
   - event-driven
 
+workspace:
+  - packages/pike
+  - packages/pike_talker
+
 platforms:
   android:
   ios:
@@ -23,8 +27,7 @@ platforms:
 
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
-  flutter: ">=3.16.0"
+  sdk: '>=3.6.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -33,8 +36,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
-  mockito: ^5.4.4
+  flutter_lints: ^5.0.0
+  pike:
+    path: packages/pike
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,0 +1,43 @@
+name: pike
+description: "Pike is an event-driven state management library, enabling efficient state updates and handling through events."
+version: 1.0.1
+resolution: workspace
+
+homepage: https://www.contributors.info/docs/Pike/getting-started
+repository: https://github.com/contributors-company/pike
+issue_tracker: https://github.com/contributors-company/pike/issues
+
+topics:
+  - pike
+  - state-management
+  - state
+  - event-driven
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+
+funding:
+  - https://www.patreon.com/c/Contributors
+
+screenshots:
+  - description: 'Pike State Manager Logo Flutter'
+    path: screenshots/pike-logo.png
+  - description: 'Frame Pike State Manager Flutter'
+    path: screenshots/pike-frame.png
+
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  mockito: ^5.4.4
