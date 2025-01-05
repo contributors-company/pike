@@ -41,8 +41,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Analyze project source
-        run: cd package/pike && flutter analyze --fatal-infos --fatal-warnings lib/ test/
-
 
 

@@ -1,6 +1,6 @@
-## 1.0.3-dev
+## 1.0.3
 
-* Test with Monorepo
+* MultiPikeProvider
 
 ## 1.0.2-dev
 
