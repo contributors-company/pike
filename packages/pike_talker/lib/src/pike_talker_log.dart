@@ -23,8 +23,6 @@ class PikeEventLog extends PikeTalkerLog {
   @override
   String get key => TalkerLogType.pikeEvent.key;
 
-
-
   @override
   String generateTextMessage({
     TimeFormat timeFormat = TimeFormat.timeAndSeconds,
@@ -36,9 +34,11 @@ class PikeEventLog extends PikeTalkerLog {
   }
 }
 
-
 interface class ILogType {
-  ILogType({required this.key, required this.logLevel,});
+  ILogType({
+    required this.key,
+    required this.logLevel,
+  });
 
   final String key;
   final LogLevel logLevel;

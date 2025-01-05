@@ -1,6 +1,5 @@
 import 'package:pike/pike.dart';
 
-
 /// Base class for observing the lifecycle and behavior of `PikeBase` instances.
 ///
 /// The `PikeObserver` provides hooks for monitoring events, state changes,
@@ -8,7 +7,7 @@ import 'package:pike/pike.dart';
 /// This is particularly useful for debugging or adding
 /// custom logging functionality to state management.
 
-class PikeObserver {
+abstract class PikeObserver {
   /// Called when a `PikeBase` instance is created.
   ///
   /// [P] - The type of the `PikeBase` instance.

@@ -1,7 +1,7 @@
 import 'modules/carp_test.dart' as carp_test;
 import 'modules/pike_builder_test.dart' as pike_builder_test;
 import 'modules/pike_consumer_test.dart' as pike_consumer_test;
-
+import 'modules/multi_pike_provider_test.dart' as multi_pike_provider_test;
 import 'modules/pike_observer_test.dart' as pike_observer_test;
 import 'modules/pike_test.dart' as pike_test;
 
@@ -11,4 +11,5 @@ void main() {
   pike_observer_test.main();
   pike_builder_test.main();
   pike_consumer_test.main();
+  multi_pike_provider_test.main();
 }

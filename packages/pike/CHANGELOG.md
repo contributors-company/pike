@@ -1,6 +1,10 @@
-## 1.0.1-dev
+## 1.0.1
 
 * MultiPikeProvider
+
+## 1.0.1-dev
+
+* MultiPikeProvider test
 
 ## 1.0.0
 

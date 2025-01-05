@@ -1,5 +1,5 @@
-import 'package:pike/pike.dart';
 import 'package:meta/meta.dart';
+import 'package:pike/pike.dart';
 import 'package:pike_talker/pike_talker.dart';
 import 'package:talker/talker.dart';
 
@@ -38,7 +38,6 @@ class TalkerBlocObserver extends PikeObserver {
     );
   }
 
-
   @override
   void onCreate<P extends PikeBase<Object?>>(
     P pike,
@@ -58,7 +57,6 @@ class TalkerBlocObserver extends PikeObserver {
   }
 
   @override
-  void onEmit<Event, State, P extends PikeBase<Object?>>(P pike, Change<Event, State> change) {
-
-  }
+  void onEmit<Event, State, P extends PikeBase<Object?>>(
+      P pike, Change<Event, State> change) {}
 }

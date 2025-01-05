@@ -27,3 +27,5 @@ environment:
   sdk: '>=3.6.0'
 dependencies:
   talker: ^4.5.2
+  pike: any
+  meta: any

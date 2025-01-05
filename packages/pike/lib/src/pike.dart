@@ -87,4 +87,3 @@ abstract class Pike<Event, State> extends PikeBase<State> {
     super.dispose();
   }
 }
-

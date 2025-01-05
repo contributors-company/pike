@@ -95,8 +95,11 @@ class PikeProvider<T extends PikeBase<Object?>> extends InheritedWidget {
   /// ```dart
   /// final newProvider = existingProvider.buildWithChild(MyNewWidget());
   /// ```
-  Widget buildWithChild(Widget? child) =>
-      PikeProvider<T>(pike: pike, child: child);
+  Widget buildWithChild(Widget? child) => PikeProvider<T>(
+        pike: pike,
+        key: key,
+        child: child,
+      );
 
   /// Override the default [createElement] method
   /// to return a custom element for this widget.

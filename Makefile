@@ -1,6 +1,8 @@
 SHELL :=/bin/bash -e -o pipefail
 PWD   := $(shell pwd)
 
+PACKAGES := packages/pike packages/pike_talker
+
 .DEFAULT_GOAL := all
 .PHONY: all
 all: ## build pipeline
@@ -40,23 +42,31 @@ version: ## show current flutter version
 get: ## get dependencies
 	$(call print-target)
 	@fvm flutter pub get
+	@for package in $(PACKAGES); do \
+  		(cd $$package && fvm flutter pub get); \
+  	done
 
 .PHONY: upgrade
 upgrade: get ## upgrade dependencies
 	$(call print-target)
-	@fvm flutter pub get
+	@for package in $(PACKAGES); do \
+		(cd $$package && fvm flutter pub get); \
+	done
 
 .PHONY: outdated
 outdated: ## check for outdated dependencies
 	$(call print-target)
 	@fvm flutter pub outdated
+	@for package in $(PACKAGES); do \
+		(cd $$package && fvm flutter pub outdated); \
+	done
 
 .PHONY: fix
 fix: get ## format and fix code
 	$(call print-target)
-	@fvm dart format --fix -l 80 lib/ test/
-	@fvm dart fix --apply lib/
-	@fvm dart fix --apply test/
+	@for package in $(PACKAGES); do \
+		(cd $$package && fvm dart format --fix -l 80 lib/ test/); \
+	done
 
 .PHONY: format
 format: fix
@@ -70,12 +80,18 @@ clean: ## remove files created during build pipeline
 	@fvm flutter clean
 	@rm -rf .dart_tool build coverage .flutter-plugins .flutter-plugins-dependencies
 	$(call get)
+	@for package in $(PACKAGES); do \
+		(cd $$package && fvm flutter clean); \
+		(cd $$package && rm -rf .dart_tool build coverage .flutter-plugins .flutter-plugins-dependencies); \
+	done
 
 .PHONY: analyze
 analyze: get ## check source code for errors and warnings
 	$(call print-target)
-	@fvm dart format --set-exit-if-changed -l 80 -o none lib/ test/
-	@fvm flutter analyze --fatal-infos --fatal-warnings lib/ test/
+	@for package in $(PACKAGES); do \
+		(cd $$package && fvm dart format --set-exit-if-changed -l 80 -o none lib/ test/); \
+		(cd $$package && fvm flutter analyze --fatal-infos --fatal-warnings lib/ test/); \
+	done
 
 .PHONY: check
 check: analyze
@@ -86,12 +102,18 @@ lint: analyze
 .PHONY: test
 test: ## run tests
 	$(call print-target)
-	@fvm flutter test --color --coverage --concurrency=50 --platform=tester --reporter=compact --timeout=30s
+	@for package in $(PACKAGES); do \
+		(cd $$package && fvm flutter test --color --coverage --concurrency=50 --platform=tester --reporter=compact --timeout=30s); \
+	done
 
 .PHONY: coverage
 coverage: test ## generate coverage report
 	$(call print-target)
-	@lcov --list coverage/lcov.info
+	@mkdir -p coverage
+	@for package in $(PACKAGES); do \
+		(cd $$package && lcov --capture --directory . --output-file coverage/lcov.info); \
+	done
+	@lcov --add-tracefile coverage/lcov.info --output-file coverage/combined_lcov.info
 
 .PHONY: diff
 diff: ## git diff
@@ -103,8 +125,10 @@ define print-target
     @printf "Executing target: \033[36m$@\033[0m\n"
 endef
 
-
 .PHONY: dartdoc
 dartdoc: ## generate dart documentation
 	$(call print-target)
 	dartdoc
+	@for package in $(PACKAGES); do \
+		(cd $$package && dartdoc); \
+	done

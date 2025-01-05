@@ -5,7 +5,7 @@ import 'package:pike/pike.dart';
 /// observing events, state changes, and lifecycle hooks.
 ///
 /// [State] - The type of state managed by this class.
-class PikeBase<State> {
+abstract class PikeBase<State> {
   /// Creates an instance of [PikeBase] with the given [ValueNotifier].
   ///
   /// **Example Usage:**

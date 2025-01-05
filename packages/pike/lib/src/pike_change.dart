@@ -5,7 +5,7 @@
 ///
 /// This class encapsulates the event, the current state before the change,
 /// and the next state after the change.
-class Change<Event, State> {
+final class Change<Event, State> {
   /// Creates an instance of [Change].
   ///
   /// [event] - The event that caused the state change (can be null).

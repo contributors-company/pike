@@ -68,18 +68,14 @@ class _PikeBuilderState<P extends PikeBase<S>, S>
     super.didUpdateWidget(oldWidget);
     final oldPike = oldWidget.pike ?? PikeProvider.of<P>(context);
     final currentPike = widget.pike ?? oldPike;
-    if (_pike != currentPike) {
-      _pike = currentPike;
-    }
+    if (_pike != currentPike) _pike = currentPike;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final pike = widget.pike ?? PikeProvider.of<P>(context);
-    if (_pike != pike) {
-      _pike = pike;
-    }
+    if (_pike != pike) _pike = pike;
   }
 
   /// A listener that triggers a rebuild

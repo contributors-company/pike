@@ -1,6 +1,5 @@
 import 'package:pike/pike.dart';
 
-
 class PikeTalkerSettings {
   const PikeTalkerSettings({
     this.enabled = true,
@@ -11,7 +10,6 @@ class PikeTalkerSettings {
     this.printEventFullData = true,
     this.eventFilter,
   });
-
 
   final bool enabled;
 
